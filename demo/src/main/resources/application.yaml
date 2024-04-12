@@ -1,0 +1,12 @@
+#spring.application.name=demo
+#server.port=80
+#server.tomcat.threads.max=1
+
+spring:
+  application:
+    name: demo
+server:
+  port: 81
+  tomcat:
+    threads:
+      max: 1
