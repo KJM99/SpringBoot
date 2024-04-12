@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- xml : extension(확장된) markup language / key 와 value 로 이루어진 file -->
+<configuration>
+    <typeAliases>
+        <package name="com.example.demo.domain"/>
+        <package name="com.example.demo.dto.response"/>
+<!--        <typeAlias type="com.example.demo.dto.request.SignInRequest" alias="SignInRequest"/>-->
+        <package name="com.example.demo.dto.request"/>
+    </typeAliases>
+</configuration>
