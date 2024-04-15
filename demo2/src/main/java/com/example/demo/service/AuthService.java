@@ -28,7 +28,9 @@ public class AuthService {
         // 있으면 처리
         if(!byUserName.isEmpty()) throw new ExistUsernameException();
         // 없으면 insert
-        userMapper.addUser(req.toEntity());
+        User entity = req.toEntity();
+        userMapper.addUser(entity);
+        System.out.println(entity.getId());
     }
 
 //    내가 하다가 실패

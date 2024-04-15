@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.exception.ExistUsernameException;
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,5 +22,11 @@ public class ExceptionController {
             UserNotFoundException e
     ){
         return e.getMessage();
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String notFoundExceptionHandler(NotFoundException e){
+        return e.getMessage() + " Is NOT FOUND";
     }
 }
