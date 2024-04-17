@@ -7,7 +7,7 @@ public record PlaylistRequest (String plTitle, Long userId){
 
     public Playlist toEntity(){
         return Playlist.builder()
-                .plTitle(plTitle)
+                .title(plTitle)
                 .user(new User(userId, null, null, null,null))
                 .build();
     }

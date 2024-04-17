@@ -20,6 +20,17 @@ public class Song {
     private String title;
     @Column(name = "SONG_LYRICS")
     private String lyrics;
+
     @Column(name = "SONG_CREATED_AT")
     private LocalDateTime createdAt;
+
+    // 전부를 열지 말고 열어줘야하는 것만 열어줌 setter 쓰라고 노란줄 뜨는거임
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setLyrics(String lyrics) {
+        this.lyrics = lyrics;
+    }
 }

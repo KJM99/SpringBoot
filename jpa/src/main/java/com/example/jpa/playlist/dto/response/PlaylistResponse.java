@@ -10,6 +10,6 @@ public record PlaylistResponse(Long id, String title, UserDto userDto) {
         User user = playlist.getUser();
         UserDto userDto = new UserDto(user.getId(), user.getNickname());
 
-        return new PlaylistResponse(playlist.getId(), playlist.getPlTitle(), userDto);
+        return new PlaylistResponse(playlist.getId(), playlist.getTitle(), userDto);
     }
 }

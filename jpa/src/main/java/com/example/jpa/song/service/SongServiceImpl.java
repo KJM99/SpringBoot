@@ -3,6 +3,7 @@ package com.example.jpa.song.service;
 import com.example.jpa.global.domain.entity.Song;
 import com.example.jpa.global.domain.repository.SongRepository;
 import com.example.jpa.song.dto.request.SongRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +28,29 @@ public class SongServiceImpl implements SongService{
     }
 
     @Override
+    @Transactional
     public Song getById(Long id) {
         Optional<Song> byId = songRepository.findById(id);
-        return byId.orElse(new Song()); // byId가 뭐든간에 없으면 ()를 실행할거에요. 있으면 byId를 리턴할거에요
+//        Song song = byId.orElse(new Song());
+//        song.setTitle("*****"); // update 문이 자동으로 실행
+        return byId.orElse(new Song());
+//        return song; // byId가 뭐든간에 없으면 ()를 실행할거에요. 있으면 byId를 리턴할거에요
 //        if(byId.isEmpty()) return null;
 //        return byId.get();
     }
+
+    @Override
+    @Transactional
+    public Song update(SongRequest req, Long id) {
+//        Optional<Song> byId = songRepository.findById(id);
+//        if(byId.isEmpty()) throw new IllegalArgumentException();
+//        Song song = byId.get();
+        Song song = songRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+
+        song.setTitle(req.title());
+        song.setLyrics(req.lyrics());
+        return song;
+    }
+
+
 }

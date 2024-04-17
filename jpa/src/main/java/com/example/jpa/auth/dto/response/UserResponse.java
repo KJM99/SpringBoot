@@ -20,7 +20,7 @@ public record UserResponse (Long id, String nickname, List<PlaylistDto> playlist
         // map 써보기
         List<PlaylistDto> list = user.getPlaylists()
                 .stream()
-                .map(playlist -> new PlaylistDto(playlist.getId(), playlist.getPlTitle()))
+                .map(playlist -> new PlaylistDto(playlist.getId(), playlist.getTitle()))
                 .toList();
 
 //        return new UserResponse(user.getId(), user.getNickname(), playlistDtos);

@@ -24,6 +24,6 @@ public class User {
     @Column(name = "USER_NICKNAME")
     private String nickname;
 
-    @OneToMany(mappedBy = "user")// 매핑된 필드의 이름을 가져와야 함
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)// 매핑된 필드의 이름을 가져와야 함
     private List<Playlist> playlists; // 순환 참조
 }
