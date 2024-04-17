@@ -10,4 +10,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByUsername(String name);
 //    select * from users where user_nickname like "%?%" order by userId desc;
     List<User> findByNicknameContainingOrderByIdDesc(String nickname);
+
 }
