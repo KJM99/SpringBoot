@@ -37,8 +37,8 @@ class SongServiceTest {
 
             // then
             Song song1 = songRepository.findById(song.getId()).get();
-            Assertions.assertEquals("test1", song1.getTitle());
-            Assertions.assertEquals("test1", song1.getLyrics());
+            assertEquals("test1", song1.getTitle());
+            assertEquals("test1", song1.getLyrics());
 
         }
 
@@ -64,9 +64,9 @@ class SongServiceTest {
         Song byId = songRepository.findById(song.getId()).get();
 
         // then
-        Assertions.assertEquals(song, byId);
-        Assertions.assertEquals(song.getId(), byId.getId());
-        Assertions.assertEquals("test", byId.getTitle());
+        assertEquals(song, byId);
+        assertEquals(song.getId(), byId.getId());
+        assertEquals("test", byId.getTitle());
 
         System.out.println(byId == song);
 //        System.out.println(byId.getId());

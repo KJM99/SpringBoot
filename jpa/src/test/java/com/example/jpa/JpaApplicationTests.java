@@ -1,5 +1,6 @@
 package com.example.jpa;
 
+import com.example.jpa.global.domain.entity.Playlist;
 import com.example.jpa.global.domain.entity.User;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,23 @@ class JpaApplicationTests extends InitData{
 			System.out.println("start");
 			System.out.println(user.getPlaylists().get(0).getTitle());
 		}
+	}
+
+	@Test
+	void joinTest(){
+		// given
+
+		// when
+		List<Playlist> allWithUsers = playlistRepository.findAllWithUsers("1");
+
+		allWithUsers.forEach(
+				playlist -> {
+					System.out.println(playlist.getTitle());
+					System.out.println(playlist.getId());
+					System.out.println(playlist.getUser().getUsername());
+				}
+		);
+		// then
 	}
 }
 

@@ -1,6 +1,6 @@
-package com.example.jpa.global.domain.repository;
+package com.example.auth.global.domain.repository;
 
-import com.example.jpa.global.domain.entity.Playlist;
+import com.example.auth.global.domain.entity.Playlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
