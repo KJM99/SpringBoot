@@ -2,6 +2,9 @@ package com.example.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class AuthApplication {
@@ -10,4 +13,10 @@ public class AuthApplication {
 		SpringApplication.run(AuthApplication.class, args);
 	}
 
+	// 한 번만 생성해서 쓴다 -> 싱글톤
+	// 스프링의 핵심 키워드
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
