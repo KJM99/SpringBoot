@@ -46,7 +46,7 @@ class AuthServiceTest {
 
             // then
             assertNotNull(res.token());
-            assertEquals(3, res.token().split(".").length);
+            assertEquals(3, res.token().split("\\.").length);
             assertEquals("Bearer", res.tokenType());
         }
 
