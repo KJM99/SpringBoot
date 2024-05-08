@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/KJM99/config.git
+# http://localhost:8888/token/dev
+
+encrypt:
+  key: qweqweqweasdasdasdzxczxczxc

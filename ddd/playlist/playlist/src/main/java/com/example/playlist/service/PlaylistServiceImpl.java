@@ -1,21 +1,34 @@
 package com.example.playlist.service;
 
+import com.example.playlist.config.TokenInfo;
+import com.example.playlist.dto.request.UpdateRequest;
+import com.example.playlist.global.domain.entity.Playlist;
 import com.example.playlist.global.domain.repository.PlaylistRepository;
 import com.example.playlist.dto.request.PlaylistRequest;
 import com.example.playlist.dto.response.PlaylistResponse;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService{
     private final PlaylistRepository playlistRepository;
 
+
     @Override
-    public void save(PlaylistRequest req) {
-        playlistRepository.save(req.toEntity());
+    @Transactional
+    public void updateUser(Long uid, UpdateRequest request) {
+        playlistRepository.updateUserNickname(request.nickname(), uid);
+
+    }
+
+    @Override
+    public void save(PlaylistRequest req, TokenInfo tokenInfo) {
+        playlistRepository.save(req.toEntity(tokenInfo));
     }
 
     @Override

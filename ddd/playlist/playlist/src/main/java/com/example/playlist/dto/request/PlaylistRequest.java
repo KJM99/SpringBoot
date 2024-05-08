@@ -1,14 +1,15 @@
 package com.example.playlist.dto.request;
 
+import com.example.playlist.config.TokenInfo;
 import com.example.playlist.global.domain.entity.Playlist;
-import com.example.playlist.global.domain.entity.User;
 
 public record PlaylistRequest (String plTitle, Long userId){
 
-    public Playlist toEntity(){
+    public Playlist toEntity(TokenInfo tokenInfo){
         return Playlist.builder()
                 .title(plTitle)
-                .user(new User(userId, null, null, null,null))
+                .userId(tokenInfo.id())
+                .nickname(tokenInfo.nickname())
                 .build();
     }
 }

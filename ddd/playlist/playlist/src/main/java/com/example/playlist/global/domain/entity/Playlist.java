@@ -16,7 +16,10 @@ public class Playlist {
     private Long id;
     @Column(name = "PLAYLIST_TITLE")
     private String title;
-    @JoinColumn(name = "USER_ID")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user; // 순환 참조
+
+    @Column(name = "USER_ID")
+    private Long userId;
+
+    @Column(name = "USER_NICKNAME")
+    private String nickname;
 }

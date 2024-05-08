@@ -1,13 +1,16 @@
 package com.example.auth.controller;
 
+import com.example.auth.api.FeignPlaylist;
 import com.example.auth.config.JwtTokenUtils;
 import com.example.auth.config.TokenInfo;
 import com.example.auth.dto.request.LoginRequest;
 import com.example.auth.dto.request.SignupRequest;
+import com.example.auth.dto.request.UpdateRequest;
 import com.example.auth.dto.request.UserRequest;
 import com.example.auth.dto.response.UserResponse;
 import com.example.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +21,8 @@ import java.util.List;
 public class AuthController {
     private final JwtTokenUtils jwtTokenUtils;
     private final AuthService authService;
+    private final FeignPlaylist feignPlaylist;
+
 
 //    header 에 Authorization 이라는 field 에 값을 넣어줌 : Bearer ~~~
     @PostMapping("/login")
@@ -35,6 +40,17 @@ public class AuthController {
     public TokenInfo getMe(@RequestHeader("Authorization") String bearerToken){
         String token = bearerToken.substring(7);
         return jwtTokenUtils.parseToken(token);
+    }
+
+    @GetMapping("/play")
+    public Object getPlaylist(){
+        return feignPlaylist.getAll();
+    }
+
+    @PutMapping
+    public void updatePlayList(@RequestHeader("Authorization") String bearerToken, @RequestBody UpdateRequest request){
+        TokenInfo token = jwtTokenUtils.parseToken(bearerToken.substring(7));
+        authService.update(token.id(), request);
     }
 
     @GetMapping

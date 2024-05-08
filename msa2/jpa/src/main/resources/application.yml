@@ -1,0 +1,12 @@
+server:
+  port: 9001
+
+spring:
+  datasource:
+    username: sa
+    password:
+    url: jdbc:h2:mem:test1
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true

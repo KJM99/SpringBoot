@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/auth/auth" />
+    <file type="web" url="file://$PROJECT_DIR$/config" />
     <file type="web" url="file://$PROJECT_DIR$/eureka" />
     <file type="web" url="file://$PROJECT_DIR$/gateway/gateway" />
     <file type="web" url="file://$PROJECT_DIR$/playlist/playlist" />

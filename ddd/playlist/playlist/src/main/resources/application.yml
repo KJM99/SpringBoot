@@ -5,7 +5,7 @@ spring:
   application:
     name: playlist-service
   datasource:
-    url: jdbc:mysql://localhost:3306/music_test2?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/music_test3?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: root
     password: 1234
   jpa:
@@ -16,7 +16,11 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.80.4:8762/eureka/
+      defaultZone: http://localhost:8762/eureka/
   instance:
     prefer-ip-address: true
     instance-id: kjm_pl
+
+token:
+  secret: vsdab1232fkewbquriebp12315555555aa
+  expiration: 600000

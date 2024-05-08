@@ -1,0 +1,15 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: test1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+#	ip-address: 192.168.0.23
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${random.uuid}
