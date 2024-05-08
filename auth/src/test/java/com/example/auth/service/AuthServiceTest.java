@@ -46,13 +46,41 @@ class AuthServiceTest {
 
             // then
             assertNotNull(res.token());
+            System.out.println(res.token());
             assertEquals(3, res.token().split("\\.").length);
             assertEquals("Bearer", res.tokenType());
         }
 
         @Test
-        void 실패() {
+        void 실패_회원_없음() {
+            // given
+            User init = User.builder().email("t@t.com")
+                .password(passwordEncoder.encode("1234"))
+                .nickname("tt")
+                .gender("남")
+                .birthDay(LocalDate.of(1990, 1, 1))
+                .build();
+            userRepository.save(init);
+            SignInRequest request = new SignInRequest("t@a.com", "1234");
 
+            // when & then
+            assertThrows(IllegalArgumentException.class, () -> authService.signIn(request));
+        }
+
+        @Test
+        void 실패_비밀번호_틀림() {
+            // given
+            User init = User.builder().email("t@t.com")
+                .password(passwordEncoder.encode("1234"))
+                .nickname("tt")
+                .gender("남")
+                .birthDay(LocalDate.of(1990, 1, 1))
+                .build();
+            userRepository.save(init);
+            SignInRequest request = new SignInRequest("t@t.com", "12345");
+
+            // when & then
+            assertThrows(IllegalArgumentException.class, () -> authService.signIn(request));
         }
     }
 
