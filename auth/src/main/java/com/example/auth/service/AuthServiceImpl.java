@@ -5,13 +5,16 @@ import com.example.auth.domain.entity.UserRepository;
 import com.example.auth.domain.request.SignInRequest;
 import com.example.auth.domain.request.SignUpRequest;
 import com.example.auth.domain.response.SignInResponse;
+import com.example.auth.exception.ExistedUserException;
 import com.example.auth.global.utils.JwtUtil;
 import jakarta.transaction.Transactional;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -22,13 +25,15 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional
     public void insertUser(SignUpRequest request) {
+        log.info("Insert user");
         // 1. 유저가 있는지 찾아보고
         Optional<User> byEmail = userRepository.findByEmail(request.email());
         // 2-1. 있으면 error
-        if(byEmail.isPresent()) throw new IllegalArgumentException();
+        if(byEmail.isPresent()) throw new ExistedUserException(request.email());
         // 2-2. 없으면 insert
         String encodedPassword = passwordEncoder.encode(request.password());
         User user = request.toEntity(encodedPassword);
+        log.info(request.toString());
         userRepository.save(user);
     }
 

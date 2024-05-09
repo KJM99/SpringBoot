@@ -7,6 +7,7 @@ import com.example.auth.domain.entity.UserRepository;
 import com.example.auth.domain.request.SignInRequest;
 import com.example.auth.domain.request.SignUpRequest;
 import com.example.auth.domain.response.SignInResponse;
+import com.example.auth.exception.ExistedUserException;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -117,7 +118,7 @@ class AuthServiceTest {
             userRepository.save(User.builder().email("a@b.com").build());
 
             // when & then
-            assertThrows(IllegalArgumentException.class, () -> {
+            assertThrows(ExistedUserException.class, () -> {
                 authService.insertUser(request);
             });
         }
