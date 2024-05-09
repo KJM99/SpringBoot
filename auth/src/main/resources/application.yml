@@ -8,3 +8,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+
+jwt:
+  secret: qwerqwerqwerqwerqwerqwerqwerqwerqwerqwer
+  expiration: 25920000
+
+logging:
+  level:
+    org.springframework.security: trace
+    com.example.auth: info
